@@ -25,7 +25,7 @@ const TodoApp = () => {
    useEffect(() => {
     const FetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/");
+        const res = await axios.get("https://mytodo-backend-641j.onrender.com/");
         settasks(res.data);
         localStorage.setItem("todos", JSON.stringify(res.data))
         
@@ -43,7 +43,7 @@ const TodoApp = () => {
 
   const AddData = async ()=>{
       try {
-        const newtask = await axios.post("http://localhost:3000/", {title : selectedTask} )
+        const newtask = await axios.post("https://mytodo-backend-641j.onrender.com/", {title : selectedTask} )
         if (newtask) {
           settasks((prev)=> [...prev , newtask.data ])
           setSelectedTask("")
@@ -58,7 +58,7 @@ const TodoApp = () => {
     const removeData = async (id)=> {
 
       try {
-       await axios.delete(`http://localhost:3000/delete/${id}` ) 
+       await axios.delete(`https://mytodo-backend-641j.onrender.com/delete/${id}` ) 
        settasks(tasks.filter(t=> t._id !== id))
 
       } catch (error) {
@@ -70,7 +70,7 @@ const TodoApp = () => {
       try {
 
         const {id, updatedtask} = edit
-        const updating = await axios.put(`http://localhost:3000/edit/${id}` , {updatedTask : updatedtask})
+        const updating = await axios.put(`https://mytodo-backend-641j.onrender.com/edit/${id}` , {updatedTask : updatedtask})
         settasks(tasks.map((t)=> (t._id === id ? updating.data : t)))
         setShowEdit(false)
       } catch (error) {
